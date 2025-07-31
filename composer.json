@@ -1,0 +1,62 @@
+{
+    "name": "tolle/nova-flexible-content",
+    "description": "Flexible Content & Repeater Fields for Laravel Nova. Forked for Dependable Fields Support.",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "nova",
+        "field",
+        "flexible",
+        "repeat",
+        "group",
+        "layout"
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.0|^9.0|^10.0",
+        "laravel/nova": "^4.0",
+        "nova-kit/nova-packages-tool": "^1.3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tolle\\NovaFlexibleContent\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/tolledev/php-fixer.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tolle\\NovaFlexibleContent\\FieldServiceProvider",
+                "Tolle\\NovaFlexibleContent\\SubfieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.2",
+        "phpunit/phpunit": "^9.5",
+        "tolle/php-fixer": "^2.0.0"
+    },
+    "scripts": {
+        "test": "phpunit --colors=always tests",
+        "fix-style": "./vendor/bin/pint"
+    }
+}
