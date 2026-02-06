@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import FullWidthField from './FullWidthField';
+import FullWidthField from './FullWidthField.vue';
 import Sortable from 'sortablejs';
 import { DependentFormField, HandlesValidationErrors, mapProps } from 'laravel-nova';
 import Group from '../group';
