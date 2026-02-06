@@ -2,14 +2,14 @@
   <div class="w-3/5" v-if="layouts">
     <div v-if="this.limitCounter > 0 || this.limitCounter === null">
       <div v-if="layouts.length === 1">
-        <default-button
+        <Button
           dusk="toggle-layouts-dropdown-or-add-default"
           type="button"
           tabindex="0"
           @click="toggleLayoutsDropdownOrAddDefault"
         >
           <span>{{ field.button }}</span>
-        </default-button>
+        </Button>
       </div>
       <div v-if="layouts.length > 1">
         <div style="min-width: 300px;">
@@ -34,11 +34,14 @@
 
 <script>
 import Multiselect from '@vueform/multiselect'
+import { Button } from 'laravel-nova-ui';
+
 export default {
   props: ['layouts', 'field', 'resourceName', 'resourceId', 'resource', 'errors', 'limitCounter', 'limitPerLayoutCounter'],
   emits: ['addGroup'],
   components: {
     Multiselect,
+    Button,
   },
   data() {
     return {

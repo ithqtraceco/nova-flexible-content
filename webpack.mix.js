@@ -8,6 +8,8 @@ mix.setPublicPath('dist').
   alias({
     'nova-mixins': path.join(__dirname,
       './vendor/laravel/nova/resources/js/mixins'),
+    'laravel-nova-ui': path.join(__dirname,
+      './vendor/laravel/nova/resources/ui/components'),
   }).
   webpackConfig({
     externals: {
