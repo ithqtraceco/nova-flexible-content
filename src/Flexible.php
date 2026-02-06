@@ -61,7 +61,7 @@ class Flexible extends Field
     public static $model;
 
     /**
-     * Create a fresh flexible field instance
+     * Create a Fresh flexible field instance
      *
      * @param  string  $name
      * @param  string|null  $attribute
