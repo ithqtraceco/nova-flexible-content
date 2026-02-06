@@ -1,3 +1,5 @@
+import '../sass/field.scss'
+
 Nova.booting((Vue) => {
     // Vue.component('index-nova-flexible-content', require('./components/IndexField').default)
     Vue.component('detail-nova-flexible-content', require('./components/DetailField.vue').default)
