@@ -103,9 +103,12 @@
 <script>
 import BehavesAsPanel from 'nova-mixins/BehavesAsPanel';
 import { mapProps } from 'laravel-nova';
+import { Icon } from 'laravel-nova-ui';
 
 export default {
   mixins: [BehavesAsPanel],
+
+  components: { Icon },
 
   props: {
     errors: {},
