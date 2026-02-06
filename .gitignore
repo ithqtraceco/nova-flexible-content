@@ -8,3 +8,8 @@ phpunit.xml
 .phpunit.result.cache
 .DS_Store
 Thumbs.db
+auth.json
+auth.json:Zone.Identifier
+
+# Keep dist for built assets
+!/dist
