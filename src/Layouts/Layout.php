@@ -346,6 +346,9 @@ class Layout implements LayoutInterface, JsonSerializable, ArrayAccess, Arrayabl
      */
     public function getResolvedValue()
     {
+        // Apply dependsOn before serialization to populate options based on saved values
+        $this->applyDependsOnBeforeSerialization();
+
         return [
             'layout' => $this->name,
 
@@ -362,6 +365,52 @@ class Layout implements LayoutInterface, JsonSerializable, ArrayAccess, Arrayabl
             // why we need to serialize the field's current state.
             'attributes' => $this->fields->jsonSerialize(),
         ];
+    }
+
+    /**
+     * Apply dependsOn callbacks before serialization to ensure options are populated.
+     * Only runs during initial form load, not during dependsOn sync requests.
+     *
+     * @return void
+     */
+    protected function applyDependsOnBeforeSerialization()
+    {
+        $request = app(NovaRequest::class);
+
+        // Skip if this is a dependsOn sync request (PATCH with component parameter)
+        // In that case, the middleware handles dependsOn
+        if ($request->isMethod('PATCH')) {
+            return;
+        }
+
+        $attributes = $this->getAttributes();
+
+        if (empty($attributes)) {
+            return;
+        }
+
+        // Create a synthetic request with the layout's attributes
+        $syntheticRequest = NovaRequest::createFrom($request);
+        $syntheticRequest->merge($attributes);
+
+        $this->fields->each(function ($field) use ($syntheticRequest, $attributes) {
+            if (method_exists($field, 'applyDependsOn')) {
+                // Store original value before applying dependsOn
+                $originalValue = $field->value;
+
+                $field->applyDependsOn($syntheticRequest);
+
+                // Restore the original value - we only want dependsOn to set options/labels
+                // Also clear any meta value override set by the callback
+                if (isset($attributes[$field->attribute])) {
+                    $field->value = $originalValue;
+                    // Remove meta value override so the actual value is used
+                    if (property_exists($field, 'meta') && isset($field->meta['value'])) {
+                        unset($field->meta['value']);
+                    }
+                }
+            }
+        });
     }
 
     /**
