@@ -153,7 +153,7 @@ export default {
 
       this.appendFieldAttribute(formData, this.currentField.attribute);
 
-      formData.append(this.currentField.attribute, this.value.length ? JSON.stringify(this.value) : '');
+      formData.append(this.currentField.attribute, JSON.stringify(this.value));
 
       // Append file uploads
       for (let file in this.files) {
