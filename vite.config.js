@@ -28,9 +28,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '/application-ithq/vendor/laravel/nova/resources/js'),
-      'laravel-nova-ui': path.resolve(__dirname, '/application-ithq/vendor/laravel/nova/resources/ui/components'),
-      'nova-mixins': path.resolve(__dirname, '/application-ithq/vendor/laravel/nova/resources/js/mixins'),
+      '@': path.resolve(__dirname, '../application-ithq/vendor/laravel/nova/resources/js'),
+      'laravel-nova-ui': path.resolve(__dirname, '../application-ithq/vendor/laravel/nova/resources/ui/components'),
+      'nova-mixins': path.resolve(__dirname, '../application-ithq/vendor/laravel/nova/resources/js/mixins'),
     },
   },
 })
